@@ -16,15 +16,15 @@ class ChapterReader {
       EpubBookRef bookRef, List<EpubNavigationPoint> navigationPoints) {
     var result = <EpubChapterRef>[];
     // navigationPoints.forEach((EpubNavigationPoint navigationPoint) {
-    for (var navigationPoint in navigationPoints){
+    for (var navigationPoint in navigationPoints) {
       String? contentFileName;
       String? anchor;
-      if (navigationPoint.Content?.Source ==null) continue;
+      if (navigationPoint.Content?.Source == null) continue;
       var contentSourceAnchorCharIndex =
           navigationPoint.Content!.Source!.indexOf('#');
       if (contentSourceAnchorCharIndex == -1) {
         contentFileName = navigationPoint.Content!.Source;
-        anchor = null;
+        anchor = navigationPoint.Id;
       } else {
         contentFileName = navigationPoint.Content!.Source!
             .substring(0, contentSourceAnchorCharIndex);
@@ -47,7 +47,8 @@ class ChapterReader {
           getChaptersImpl(bookRef, navigationPoint.ChildNavigationPoints!);
 
       result.add(chapterRef);
-    };
+    }
+    ;
     return result;
   }
 }
