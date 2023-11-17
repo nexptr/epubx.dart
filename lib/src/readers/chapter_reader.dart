@@ -24,7 +24,8 @@ class ChapterReader {
           navigationPoint.Content!.Source!.indexOf('#');
       if (contentSourceAnchorCharIndex == -1) {
         contentFileName = navigationPoint.Content!.Source;
-        anchor = navigationPoint.Id;
+        anchor = null;
+        // anchor = navigationPoint.Id;
       } else {
         contentFileName = navigationPoint.Content!.Source!
             .substring(0, contentSourceAnchorCharIndex);
